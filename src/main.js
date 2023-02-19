@@ -5,10 +5,17 @@ const {
 } = require('discord.js');
 const fs = require('fs');
 require('dotenv').config();
-const NetcatServer = require('netcat/server')
+const express = require('express')
+const app = express()
+const port = 8000
 
-const nc = new NetcatServer()
-nc.port(8000).listen()
+app.get('/', (req, res) => {
+    res.send('Healthy!')
+})
+
+app.listen(port, () => {
+    console.log(`app listening on port ${port}`)
+})
 
 const client = new Client({
     intents: [
