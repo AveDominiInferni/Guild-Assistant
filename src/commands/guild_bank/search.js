@@ -14,15 +14,16 @@ module.exports = {
                 .setRequired(true)
         }),
     async execute(interaction) {
+        interaction.deferReply({ephemeral: true});
         let result = await SearchBank(interaction.options.getString('item'), interaction.guildId);
         if (result) {
-            await interaction.reply({
+            await interaction.editReply({
                 content: result,
                 ephemeral: true
             });
         }
         else {
-            await interaction.reply({
+            await interaction.editReply({
                 content: 'Something went wrong!',
                 ephemeral: true
             });
