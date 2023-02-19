@@ -17,8 +17,9 @@ module.exports = {
                 .setRequired(true)
         }),
     async execute(interaction) {
+        interaction.deferReply({ephemeral: true});
         if (!interaction.member.permissions.has('ADMINISTRATOR')) {
-            await interaction.reply({
+            await interaction.editReply({
                 content: 'No permission',
                 ephemeral: true
             });
@@ -27,7 +28,7 @@ module.exports = {
 
         const attachment = interaction.options.getAttachment('file');
         if (attachment.name != 'GBMLogs.lua') {
-            await interaction.reply({
+            await interaction.editReply({
                 content: 'Wrong file!',
                 ephemeral: true
             });
@@ -45,7 +46,7 @@ module.exports = {
         var mdata = lines[1].slice(8).slice(0, -2);
         UpdateMailLogs(mdata, interaction.guildId);
 
-        await interaction.reply({
+        await interaction.editReply({
             content: 'Log file has been successfully uploaded!'
         });
     }
