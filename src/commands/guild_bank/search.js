@@ -14,7 +14,7 @@ module.exports = {
                 .setRequired(true)
         }),
     async execute(interaction) {
-        interaction.deferReply({ephemeral: true});
+        await interaction.deferReply({ephemeral: true});
         let result = await SearchBank(interaction.options.getString('item'), interaction.guildId);
         if (result) {
             await interaction.editReply({
