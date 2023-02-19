@@ -18,15 +18,16 @@ module.exports = {
                 .setDescription('Filter only a specific character')
         }),
     async execute(interaction) {
+        interaction.deferReply({ephemeral: true});
         if (!interaction.member.permissions.has('ADMINISTRATOR')) {
-            await interaction.reply({
+            await interaction.editReply({
                 content: 'No permission',
                 ephemeral: true
             });
             return;
         }
 
-        await interaction.reply({
+        await interaction.editReply({
             content: ' ',
             ephemeral: true,
             files: [await SearchMail(interaction.options.getString('name'), interaction.guildId)]
