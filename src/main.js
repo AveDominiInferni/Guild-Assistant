@@ -5,12 +5,15 @@ const {
 } = require('discord.js');
 const fs = require('fs');
 require('dotenv').config();
+const NetcatServer = require('netcat/server')
+
+const nc = new NetcatServer()
+nc.port(8000).listen()
 
 const client = new Client({
     intents: [
         Intents.FLAGS.GUILDS,
-        Intents.FLAGS.GUILD_MESSAGES,
-        Intents.FLAGS.GUILD_MESSAGE_REACTIONS
+        Intents.FLAGS.GUILD_MESSAGES
     ]
 });
 
